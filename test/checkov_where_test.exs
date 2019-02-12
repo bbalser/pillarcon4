@@ -13,5 +13,15 @@ defmodule Pillarcon.Checkov.WhereTest do
           [5, 10]
         ])
       end
+
+    test_body = Macro.prewalk(ast, fn exp ->
+      case match?({:where, _, _}, exp) do
+        true -> nil
+        false -> exp
+      end
+    end)
+
+    Macro.to_string(test_body) |> IO.puts()
+
   end
 end
