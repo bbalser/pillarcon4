@@ -35,7 +35,7 @@ defmodule Pillarcon.Checkov.WhereTest do
       {:__block__, context, args} = test_body
       {:__block__, context, variables ++ args}
     end)
-    |> IO.inspect
+    |> Enum.each(fn block -> Code.eval_quoted(block, [], __ENV__) end)
 
 
   end
