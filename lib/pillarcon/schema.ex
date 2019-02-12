@@ -15,7 +15,13 @@ defmodule Pillarcon.Schema do
         {name, Keyword.get(opts, :default, nil)}
       end)
 
+    required_fields =
+      schema_fields
+      |> Enum.filter(fn {_name, opts} -> Keyword.get(opts, :required, false) == true end)
+      |> Enum.map(fn {name, _opts} -> name end)
+
     quote do
+      @enforce_keys unquote(required_fields)
       defstruct(unquote(struct_fields))
     end
   end
