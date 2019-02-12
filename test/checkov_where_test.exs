@@ -31,7 +31,12 @@ defmodule Pillarcon.Checkov.WhereTest do
       end)
 
     end)
+    |> Enum.map(fn variables ->
+      {:__block__, context, args} = test_body
+      {:__block__, context, variables ++ args}
+    end)
     |> IO.inspect
+
 
   end
 end
