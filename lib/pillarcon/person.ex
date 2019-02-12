@@ -5,11 +5,4 @@ defmodule Pillarcon.Person do
   field :age, default: 21
   field :subscribed, default: true
 
-  if System.get_env("TEST") == "1" do
-    IO.puts("Green")
-  else
-    IO.puts("Red")
-  end
-
-
 end
