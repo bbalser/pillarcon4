@@ -21,9 +21,10 @@ defmodule Pillarcon.Checkov.WhereTest do
       end
     end)
 
-    Macro.to_string(test_body) |> IO.puts()
+    {:where, _, [[variables | data]]} = where
 
-    IO.inspect(where)
+    Enum.map(data, &Enum.zip(variables, &1))
+    |> IO.inspect
 
   end
 end
