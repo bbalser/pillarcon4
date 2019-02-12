@@ -24,6 +24,13 @@ defmodule Pillarcon.Checkov.WhereTest do
     {:where, _, [[variables | data]]} = where
 
     Enum.map(data, &Enum.zip(variables, &1))
+    |> Enum.map(fn binding ->
+
+      Enum.map(binding, fn {name, value} ->
+        {:=, [], [{name, [], __MODULE__}, value]}
+      end)
+
+    end)
     |> IO.inspect
 
   end
